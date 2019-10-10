@@ -1,7 +1,7 @@
 package com.geekbrains;
 import org.springframework.format.annotation.DateTimeFormat;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -10,7 +10,10 @@ import java.time.LocalDate;
     @Table ( name = "Tasks")
 
 public class Task {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+        private Long id;
 
     @NotEmpty
     private String description;
