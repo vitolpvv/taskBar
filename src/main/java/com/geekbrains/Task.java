@@ -7,10 +7,10 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-    @Entity
-    @Table(name = "Tasks")
-
+@Entity
+@Table(name = "Tasks")
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
