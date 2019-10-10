@@ -1,19 +1,19 @@
 package com.geekbrains;
-import org.springframework.format.annotation.DateTimeFormat;
 
+
+import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
     @Entity
-    @Table ( name = "Tasks")
+    @Table(name = "Tasks")
 
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-        private Long id;
+     private Long id;
 
     @NotEmpty
     private String description;
