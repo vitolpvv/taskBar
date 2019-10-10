@@ -1,15 +1,19 @@
 package com.geekbrains;
 import org.springframework.format.annotation.DateTimeFormat;
-
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+
+    @Entity
+    @Table ( name = "Tasks")
+
 public class Task {
     private Long id;
 
     @NotEmpty
     private String description;
-
     private String username;
 
     @NotNull
