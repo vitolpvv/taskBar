@@ -1,4 +1,4 @@
-package com.geekbrains;
+package com.geekbrains.domain;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
