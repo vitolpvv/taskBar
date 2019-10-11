@@ -13,7 +13,8 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Long id;
+    private Long   id;
+    private String title;
 
     @NotEmpty
     private String description;
@@ -23,8 +24,7 @@ public class Task {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate targetDate;
 
-    public Task() {
-    }
+    public Task() {}
 
     public Long getId() {
         return id;
@@ -57,4 +57,5 @@ public class Task {
     public void setTargetDate(LocalDate targetDate) {
         this.targetDate = targetDate;
     }
+
 }
