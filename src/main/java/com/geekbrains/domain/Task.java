@@ -20,11 +20,18 @@ public class Task {
     private String description;
     private String username;
 
-    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate targetDate;
 
     public Task() {}
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public Long getId() {
         return id;

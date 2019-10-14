@@ -1,21 +1,9 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<div>
-    <div>Добавить задачу</div>
-    <form method="post">
-        <label for="summary">Тема</label>
-        <input id="summary" name="title" type="text" value="">
-
-        <label for="summary">Описание</label>
-        <input id="description" name="description" type="text" value="">
-
-        <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit">Добавить</button>
-    </form>
-</div>
+<a href="/edit">Добавить контакт</a>
 <div>Список задач</div>
-<#list contacts as contact>
+<#list tasks as task>
 <div>
     <b>${task.id}</b>
     <span>${task.title}</span>
