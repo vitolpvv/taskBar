@@ -1,27 +1,36 @@
 package com.geekbrains.domain;
 
 
-import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "Tasks")
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
+    @Size(min = 1)
     private String title;
-
-    @NotEmpty
+    @Size(min = 1)
     private String description;
-    private String username;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @ManyToOne(optional = false)
+    private User author;
+    @ManyToMany
+    private List<User> inspectors;
+    @ManyToMany
+    private List<User> doers;
+    @Column(name = "create_date")
+    private LocalDate createDate = LocalDate.now();
+    @Column(name = "target_date")
     private LocalDate targetDate;
+    @ManyToOne
+    private Project project;
+    @Enumerated(EnumType.STRING)
+    @Size(max = 20)
+    private TaskStatus status = TaskStatus.CREATED;
 
     public Task() {}
 
@@ -49,12 +58,36 @@ public class Task {
         this.description = description;
     }
 
-    public String getUsername() {
-        return username;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public List<User> getInspectors() {
+        return inspectors;
+    }
+
+    public void setInspectors(List<User> inspectors) {
+        this.inspectors = inspectors;
+    }
+
+    public List<User> getDoers() {
+        return doers;
+    }
+
+    public void setDoers(List<User> doers) {
+        this.doers = doers;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
     }
 
     public LocalDate getTargetDate() {
@@ -65,4 +98,19 @@ public class Task {
         this.targetDate = targetDate;
     }
 
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
 }
