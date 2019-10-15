@@ -12,10 +12,10 @@ public class Project {
     @ManyToMany
     private List<User> members;
 
-    @OneToMany
+    @ManyToOne
     private User supervisor;
 
-    @ManyToOne
+    @OneToMany
     private List<Task> tasks;
 
     public Project() {}
