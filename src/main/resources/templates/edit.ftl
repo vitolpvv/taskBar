@@ -9,7 +9,7 @@
         <input type="text" name="description" value="${task.description}"/>
         <input type="hidden" name="id" value="${task.id}" />
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit">Изменить</button>
+        <button type="submit">Сохранить</button>
     </form>
 </div>
 

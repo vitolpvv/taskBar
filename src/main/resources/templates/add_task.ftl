@@ -21,7 +21,7 @@
 <body>
 
 <div id="action_form">
-    <form method="post" action="/edit">
+    <form method="post" action="/add">
         <h4>Добавить задачу</h4>
         <label for="summary">Тема</label>
         <input id="summary" name="title" type="text" value="">
