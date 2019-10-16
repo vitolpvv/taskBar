@@ -1,7 +1,7 @@
 package com.geekbrains.service.impl;
 
 import com.geekbrains.service.Service;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +16,7 @@ import java.util.stream.StreamSupport;
  */
 abstract class ServiceImpl<T, ID> implements Service<T, ID> {
 
-    abstract CrudRepository<T, ID> getRepository();
+    abstract PagingAndSortingRepository<T, ID> getRepository();
 
     @Override
     public List<T> getAll() {

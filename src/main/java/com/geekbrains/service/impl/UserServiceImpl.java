@@ -4,7 +4,7 @@ import com.geekbrains.domain.User;
 import com.geekbrains.repo.UserRepository;
 import com.geekbrains.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class UserServiceImpl extends ServiceImpl<User, Long> implements UserServ
     private UserRepository repository;
 
     @Override
-    CrudRepository<User, Long> getRepository() {
+    PagingAndSortingRepository<User, Long> getRepository() {
         return repository;
     }
 

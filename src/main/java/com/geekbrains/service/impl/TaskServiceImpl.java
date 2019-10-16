@@ -5,7 +5,7 @@ import com.geekbrains.domain.TaskStatus;
 import com.geekbrains.repo.TaskRepository;
 import com.geekbrains.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ public class TaskServiceImpl extends ServiceImpl<Task, Long> implements TaskServ
     private TaskRepository repository;
 
     @Override
-    CrudRepository<Task, Long> getRepository() {
+    PagingAndSortingRepository<Task, Long> getRepository() {
         return repository;
     }
 
