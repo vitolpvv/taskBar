@@ -5,5 +5,6 @@
 <@c.page>
 <div>Hello, this is temporary main page!</div>
 <a href="/main">Main Page</a>
+
 <@l.logout/>
 </@c.page>

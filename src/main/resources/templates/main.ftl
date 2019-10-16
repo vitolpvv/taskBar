@@ -12,6 +12,7 @@
     <li>
         <div>
             <b>${task.title}</b>
+            <span>${task.author.username} </span>
             <form action="edit" method="get" style="display:inline;">
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <input type="hidden" name="id" value="${task.id}"/>

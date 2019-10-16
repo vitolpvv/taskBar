@@ -29,7 +29,6 @@ public class Task {
     @ManyToOne
     private Project project;
     @Enumerated(EnumType.STRING)
-    @Size(max = 20)
     private TaskStatus status = TaskStatus.CREATED;
 
     public Task() {}
