@@ -3,7 +3,7 @@
 
 <@c.page>
 <#if error??>
-    <div>Invalid username and password</div>
+<div>Invalid username and password</div>
 </#if>
 <#if logout??>
     <div>You have been logged out</div>
