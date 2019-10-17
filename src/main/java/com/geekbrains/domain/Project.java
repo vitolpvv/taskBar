@@ -7,18 +7,24 @@ import java.util.List;
 public class Project {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_generator")
+    @SequenceGenerator(name = "project_generator", sequenceName = "project_id_seq")
     private Long id;
 
     @ManyToMany
+    @JoinTable(name = "project_user",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"),
+            foreignKey = @ForeignKey(name = "project_user_project_FK"),
+            inverseForeignKey = @ForeignKey(name = "project_user_user_FK"))
     private List<User> members;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "supervisor_id", foreignKey = @ForeignKey(name = "project_supervisor_FK"))
     private User supervisor;
 
-    @OneToMany
+    @OneToMany(mappedBy = "project")
     private List<Task> tasks;
-
-    public Project() {}
 
     public Long getId() {
         return id;
