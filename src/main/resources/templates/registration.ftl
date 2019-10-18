@@ -5,7 +5,7 @@
 <div id="action_form">
     <form method="post" action="/registration">
         <h4>Добавить нового пользователя</h4>
-        <label for="summary">логин</label>
+        <label for="summary">Логин</label>
         <input id="summary" name="username" type="text" >
         <br />
         <label for="password">Пароль</label>

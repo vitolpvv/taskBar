@@ -5,6 +5,8 @@
 <@c.page>
 <div>Hello, this is temporary main page!</div>
 <a href="/main">Main Page</a>
-
+<#if (Session.SPRING_SECURITY_CONTEXT.authentication.isAuthenticated()??)!false>
 <@l.logout/>
+<#else>
+</#if>
 </@c.page>
