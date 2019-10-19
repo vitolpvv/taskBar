@@ -9,6 +9,9 @@ public class Project {
     @Id
     private Long id;
 
+    private String name;
+    private String description;
+
     @ManyToMany
     private List<User> members;
 
@@ -50,6 +53,22 @@ public class Project {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }
