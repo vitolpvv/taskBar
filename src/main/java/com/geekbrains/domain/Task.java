@@ -48,6 +48,14 @@ public class Task {
     @JoinColumn(name = "project_id", foreignKey = @ForeignKey(name = "task_project_FK"))
     private Project project;
 
+    @ManyToMany
+    @JoinTable(name = "task_comment",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id"),
+            foreignKey = @ForeignKey(name = "task_comment_task_FK"),
+            inverseForeignKey = @ForeignKey(name = "task_comment_comment_FK"))
+    private List<Comment> comments;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
     private TaskStatus status = TaskStatus.CREATED;
