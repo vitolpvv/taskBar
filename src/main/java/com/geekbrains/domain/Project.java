@@ -11,7 +11,9 @@ public class Project {
     @SequenceGenerator(name = "project_generator", sequenceName = "project_id_seq")
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+
     private String description;
 
     @ManyToMany
