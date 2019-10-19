@@ -8,7 +8,7 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_generator")
-    @SequenceGenerator(name = "project_generator", sequenceName = "project_id_seq")
+    @SequenceGenerator(name = "project_generator", sequenceName = "project_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false)

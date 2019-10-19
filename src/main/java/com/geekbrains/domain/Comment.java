@@ -9,7 +9,7 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_generator")
-    @SequenceGenerator(name = "comment_generator", sequenceName = "comment_id_seq")
+    @SequenceGenerator(name = "comment_generator", sequenceName = "comment_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false)
