@@ -25,6 +25,9 @@ public class RegistrationController {
     @Autowired
     private UserServiceImpl userService;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @GetMapping(REGISTRATION_MAPPING)
     public String registration() {
         return VIEW;
@@ -34,8 +37,7 @@ public class RegistrationController {
     public String save(@RequestParam String username, String password, Model model) {
         User user = new User();
         String result = null;
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        password = encoder.encode(password);
+        password = passwordEncoder.encode(password);
 
 
         System.out.println("yes!");
