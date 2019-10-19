@@ -1,0 +1,115 @@
+databaseChangeLog:
+- changeSet:
+    id: 1571473365502-1
+    author: vitalyparshin (generated)
+    changes:
+    - createSequence:
+        sequenceName: comment_id_seq
+- changeSet:
+    id: 1571473365502-2
+    author: vitalyparshin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              primaryKey: true
+              primaryKeyName: commentPK
+            name: id
+            type: BIGINT
+            defaultValueSequenceNext: comment_id_seq
+        - column:
+            constraints:
+              nullable: false
+            name: create_date
+            type: date
+        - column:
+            constraints:
+              nullable: false
+            name: create_time
+            type: TIME WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: author_id
+            type: BIGINT
+        tableName: comment
+- changeSet:
+    id: 1571473365502-3
+    author: vitalyparshin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: task_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: comment_id
+            type: BIGINT
+        tableName: task_comment
+- changeSet:
+    id: 1571473365502-4
+    author: vitalyparshin (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: description
+            type: varchar(255)
+        tableName: project
+- changeSet:
+    id: 1571473365502-5
+    author: vitalyparshin (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: varchar(255)
+        tableName: project
+- changeSet:
+    id: 1571473365502-6
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: author_id
+        baseTableName: comment
+        constraintName: comment_author_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: usr
+        validate: true
+- changeSet:
+    id: 1571473365502-7
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: comment_id
+        baseTableName: task_comment
+        constraintName: task_comment_comment_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: comment
+        validate: true
+- changeSet:
+    id: 1571473365502-8
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: task_comment
+        constraintName: task_comment_task_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+

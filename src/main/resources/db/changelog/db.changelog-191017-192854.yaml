@@ -1,0 +1,312 @@
+databaseChangeLog:
+- changeSet:
+    id: 1571340544235-1
+    author: vitalyparshin (generated)
+    changes:
+    - createSequence:
+        sequenceName: project_id_seq
+- changeSet:
+    id: 1571340544235-2
+    author: vitalyparshin (generated)
+    changes:
+    - createSequence:
+        sequenceName: task_id_seq
+- changeSet:
+    id: 1571340544235-3
+    author: vitalyparshin (generated)
+    changes:
+    - createSequence:
+        sequenceName: user_id_seq
+- changeSet:
+    id: 1571340544235-4
+    author: vitalyparshin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              primaryKey: true
+              primaryKeyName: projectPK
+            name: id
+            type: BIGINT
+            defaultValueSequenceNext: project_id_seq
+        - column:
+            constraints:
+              nullable: false
+            name: supervisor_id
+            type: BIGINT
+        tableName: project
+- changeSet:
+    id: 1571340544235-5
+    author: vitalyparshin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: project_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: user_id
+            type: BIGINT
+        tableName: project_user
+- changeSet:
+    id: 1571340544235-6
+    author: vitalyparshin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              primaryKey: true
+              primaryKeyName: taskPK
+            name: id
+            type: BIGINT
+            defaultValueSequenceNext: task_id_seq
+        - column:
+            constraints:
+              nullable: false
+            name: create_date
+            type: date
+        - column:
+            name: description
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: status
+            type: VARCHAR(20)
+        - column:
+            name: target_date
+            type: date
+        - column:
+            constraints:
+              nullable: false
+            name: title
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: author_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: project_id
+            type: BIGINT
+        tableName: task
+- changeSet:
+    id: 1571340544235-7
+    author: vitalyparshin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: task_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: user_id
+            type: BIGINT
+        tableName: task_doer
+- changeSet:
+    id: 1571340544235-8
+    author: vitalyparshin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: task_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: user_id
+            type: BIGINT
+        tableName: task_inspector
+- changeSet:
+    id: 1571340544235-9
+    author: vitalyparshin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: user_id
+            type: BIGINT
+        - column:
+            name: role
+            type: VARCHAR(20)
+        tableName: user_role
+- changeSet:
+    id: 1571340544235-10
+    author: vitalyparshin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              primaryKey: true
+              primaryKeyName: usrPK
+            name: id
+            type: BIGINT
+            defaultValueSequenceNext: user_id_seq
+        - column:
+            constraints:
+              nullable: false
+            name: active
+            type: BOOLEAN
+        - column:
+            name: email
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: password
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: username
+            type: VARCHAR(255)
+        tableName: usr
+- changeSet:
+    id: 1571340544235-11
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: supervisor_id
+        baseTableName: project
+        constraintName: project_supervisor_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: usr
+        validate: true
+- changeSet:
+    id: 1571340544235-12
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: project_id
+        baseTableName: project_user
+        constraintName: project_user_project_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: project
+        validate: true
+- changeSet:
+    id: 1571340544235-13
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: project_user
+        constraintName: project_user_user_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: usr
+        validate: true
+- changeSet:
+    id: 1571340544235-14
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: author_id
+        baseTableName: task
+        constraintName: task_author_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: usr
+        validate: true
+- changeSet:
+    id: 1571340544235-15
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: task_doer
+        constraintName: task_doer_doer_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: usr
+        validate: true
+- changeSet:
+    id: 1571340544235-16
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: task_doer
+        constraintName: task_doer_task_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+- changeSet:
+    id: 1571340544235-17
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: task_inspector
+        constraintName: task_inspector_inspector_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: usr
+        validate: true
+- changeSet:
+    id: 1571340544235-18
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: task_inspector
+        constraintName: task_inspector_task_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: task
+        validate: true
+- changeSet:
+    id: 1571340544235-19
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: project_id
+        baseTableName: task
+        constraintName: task_project_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: project
+        validate: true
+- changeSet:
+    id: 1571340544235-20
+    author: vitalyparshin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: user_role
+        constraintName: user_role_user_FK
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: usr
+        validate: true
+
