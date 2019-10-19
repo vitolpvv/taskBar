@@ -60,6 +60,8 @@ public class Task {
     @Column(length = 20, nullable = false)
     private TaskStatus status = TaskStatus.CREATED;
 
+    public Task() {}
+
     public String getTitle() {
         return title;
     }

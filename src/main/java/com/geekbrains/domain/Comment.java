@@ -22,6 +22,8 @@ public class Comment {
     @JoinColumn(name = "author_id", foreignKey = @ForeignKey(name = "comment_author_FK"))
     private User author;
 
+    public Comment(){}
+
     public Long getId() {
         return id;
     }

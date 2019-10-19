@@ -34,6 +34,8 @@ public class User implements UserDetails {
     @Column(name = "role", length = 20)
     private Set<Role> roles;
 
+    public User(){}
+
     public Long getId() {
         return id;
     }
