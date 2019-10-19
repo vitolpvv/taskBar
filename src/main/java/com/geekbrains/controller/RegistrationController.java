@@ -21,6 +21,7 @@ public class RegistrationController {
     private static final String VIEW = "registration";
     private static final String REDIRECTION = "/login" ;
     private static final String ATTRIBUTE = "message";
+    private static final String ERROR_MESSAGE = "User exists!";
 
     @Autowired
     private UserServiceImpl userService;
@@ -39,16 +40,11 @@ public class RegistrationController {
         String result = null;
         password = passwordEncoder.encode(password);
 
-
-        System.out.println("yes!");
-
         User userFromDB = userService.getByUsername(username);
         if (userFromDB != null) {
-            System.out.println("yes!if!");
-            model.addAttribute(ATTRIBUTE, "User exists!");
+            model.addAttribute(ATTRIBUTE, ERROR_MESSAGE);
             result = REGISTRATION_MAPPING;
         } else {
-            System.out.println("yes!else!");
             user.setUsername(username);
             user.setPassword(password);
             user.setActive(true);
