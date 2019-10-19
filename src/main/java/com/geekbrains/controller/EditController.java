@@ -29,9 +29,8 @@ public class EditController {
 
     @PostMapping("${url.edit}")
     public String update(String title, String description, Long id ){
-        Task task = new Task();
+        Task task = taskService.getById(id);
 
-        task.setId(id);
         task.setTitle(title);
         task.setDescription(description);
         taskService.save(task);

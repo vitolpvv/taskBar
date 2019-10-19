@@ -11,6 +11,9 @@ public class Project {
     @SequenceGenerator(name = "project_generator", sequenceName = "project_id_seq")
     private Long id;
 
+    private String name;
+    private String description;
+
     @ManyToMany
     @JoinTable(name = "project_user",
             joinColumns = @JoinColumn(name = "project_id"),
@@ -56,6 +59,22 @@ public class Project {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }
