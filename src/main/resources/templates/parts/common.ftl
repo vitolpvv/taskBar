@@ -7,7 +7,6 @@
     <title>TaskBar</title>
     <link rel='stylesheet' href='css/auth.css'>
     <link rel='stylesheet' href='css/common.css'>
-    <script src="js/auth.js"/>
 </head>
 <body>
     <header class="header">
