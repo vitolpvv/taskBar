@@ -10,9 +10,13 @@
 </head>
 <body>
     <header class="header">
-        <img src="image/logo.png" alt="Логотип" class="header__logo-image">
-        <h3 class="header__title">TaskBar</h3>
-        <img src="image/anonymous-user.png" alt="Аватар пользователя" class="header__user-image">
+        <a href="/" class="header__link-logo-image">
+            <img src="image/logo.png" alt="Логотип" class="header__logo-image">
+        </a>
+        <a href="/" class="header__title">TaskBar</a>
+        <a href="/" class="header__link-user-image">
+            <img src="image/anonymous-user.png" alt="Аватар пользователя" class="header__user-image">
+        </a>
     </header>
 
     <#nested>
