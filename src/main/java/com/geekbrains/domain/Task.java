@@ -1,27 +1,64 @@
 package com.geekbrains.domain;
 
 
-import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "Tasks")
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_generator")
+    @SequenceGenerator(name = "task_generator", sequenceName = "task_id_seq", allocationSize = 1)
     private Long   id;
+
+    @Column(nullable = false)
     private String title;
 
-    @NotEmpty
     private String description;
-    private String username;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "author_id", foreignKey = @ForeignKey(name = "task_author_FK"))
+    private User author;
+
+    @ManyToMany
+    @JoinTable(name = "task_inspector",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"),
+            foreignKey = @ForeignKey(name = "task_inspector_task_FK"),
+            inverseForeignKey = @ForeignKey(name = "task_inspector_inspector_FK"))
+    private List<User> inspectors;
+
+    @ManyToMany
+    @JoinTable(name = "task_doer",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"),
+            foreignKey = @ForeignKey(name = "task_doer_task_FK"),
+            inverseForeignKey = @ForeignKey(name = "task_doer_doer_FK"))
+    private List<User> doers;
+
+    @Column(name = "create_date", nullable = false)
+    private LocalDate createDate = LocalDate.now();
+
+    @Column(name = "target_date")
     private LocalDate targetDate;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "project_id", foreignKey = @ForeignKey(name = "task_project_FK"))
+    private Project project;
+
+    @ManyToMany
+    @JoinTable(name = "task_comment",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id"),
+            foreignKey = @ForeignKey(name = "task_comment_task_FK"),
+            inverseForeignKey = @ForeignKey(name = "task_comment_comment_FK"))
+    private List<Comment> comments;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20, nullable = false)
+    private TaskStatus status = TaskStatus.CREATED;
 
     public Task() {}
 
@@ -49,12 +86,36 @@ public class Task {
         this.description = description;
     }
 
-    public String getUsername() {
-        return username;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public List<User> getInspectors() {
+        return inspectors;
+    }
+
+    public void setInspectors(List<User> inspectors) {
+        this.inspectors = inspectors;
+    }
+
+    public List<User> getDoers() {
+        return doers;
+    }
+
+    public void setDoers(List<User> doers) {
+        this.doers = doers;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
     }
 
     public LocalDate getTargetDate() {
@@ -65,4 +126,19 @@ public class Task {
         this.targetDate = targetDate;
     }
 
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
 }

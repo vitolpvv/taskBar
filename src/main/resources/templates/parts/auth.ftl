@@ -27,4 +27,5 @@
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
     <input type="submit" value="Sign Out"/>
 </form>
+
 </#macro>
