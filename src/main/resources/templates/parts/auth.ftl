@@ -5,12 +5,14 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <label for="input-username" class="login-form__label-username">Логин</label>
         <input autofocus
-                type="text"
-                placeholder="Введите логин"
-                id="input-username"
-                class="login-form__input-username"/>
+               type="text"
+               name="username"
+               placeholder="Введите логин"
+               id="input-username"
+               class="login-form__input-username"/>
         <label for="input-password" class="login-form__label-password">Пароль</label>
         <input type="password"
+               name="password"
                placeholder="Введите пароль"
                id="input-password"
                class="login-form__input-password"/>
