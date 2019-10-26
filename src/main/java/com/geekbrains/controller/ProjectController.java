@@ -38,32 +38,27 @@ public class ProjectController {
     @GetMapping(PROJECT_MAPPING)
     public String main(@AuthenticationPrincipal User user, @RequestParam Long id, Model model) {
 
+        return getView(user, id, model);
+    }
+
+    private String getView(User user, Long id, Model model) {
+
         String result;
         List<Project> projects;
 
         if (id == null) {
-           projects = projectService.getAllAvailableForUser(user);
-           model.addAttribute(PROJECT_ATTRIBUTE, projects);
+            projects = projectService.getAllAvailableForUser(user);
+            model.addAttribute(PROJECT_ATTRIBUTE, projects);
 
-           result = MAIN_VIEW;
+            result = MAIN_VIEW;
         } else {
-           Project project = projectService.getById(id);
-           model.addAttribute(TASK_ATTRIBUTE, project.getTasks());
+            Project project = projectService.getById(id);
+            model.addAttribute(TASK_ATTRIBUTE, project.getTasks());
 
-           result = PROJECT_VIEW;
+            result = PROJECT_VIEW;
         }
 
         return result;
-    }
-
-    @PostMapping(DELETE_MAPPING)
-    public String delete(
-            @RequestParam Long id,
-            Map<String, Object> model) {
-
-        taskService.delete(id);
-
-        return REDIRECTION;
     }
 
 }
